@@ -1,7 +1,7 @@
 import { configureStore } from "@reduxjs/toolkit";
 import dogsReducer from "../redux/slices/DogsSlice";
 
-//Добавим редьюсер для работы с данными о собаках.
+//редьюсер для работы с данными о собаках.
 
 export const store = configureStore({
   reducer: {
@@ -9,5 +9,5 @@ export const store = configureStore({
   },
 });
 
-export type RootState = ReturnType<typeof store.getState>;
+export type AppRootStateType = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;

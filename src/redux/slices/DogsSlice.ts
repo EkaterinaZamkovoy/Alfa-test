@@ -1,8 +1,7 @@
 import { createSlice, createAsyncThunk } from "@reduxjs/toolkit";
 import { axiosInstance } from "../../api/Api";
 
-
-//Создадим слайс для работы с данными о собаках, который будет содержать действия для получения данных с API.
+//Слайс для работы с данными о собаках, действия для получения данных с API.
 
 type Dog = {
   id: number;
@@ -46,6 +45,10 @@ const dogsSlice = createSlice({
         dog.liked = !dog.liked;
       }
     },
+
+    deleteDog(state, action) {
+      state.dogs = state.dogs.filter((dog) => dog.id !== action.payload);
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -64,5 +67,5 @@ const dogsSlice = createSlice({
   },
 });
 
-export const { toggleLike } = dogsSlice.actions;
+export const { toggleLike, deleteDog } = dogsSlice.actions;
 export default dogsSlice.reducer;

@@ -9,6 +9,11 @@ type Dog = {
   description: string;
   image: string;
   liked: boolean;
+  origin: string;
+  breedGroup: string;
+  lifeSpan: string;
+  height: string;
+  weight: string;
 };
 
 interface DogsState {
@@ -32,6 +37,11 @@ export const fetchDogs = createAsyncThunk("dogs/fetchDogs", async () => {
     description: dog.temperament || "No description available",
     image: dog.image.url,
     liked: false,
+    origin: dog.origin || "Unknown",
+    breedGroup: dog.breed_group || "Not specified",
+    lifeSpan: dog.life_span || "Unknown",
+    height: dog.height.metric,
+    weight: dog.weight.metric,
   }));
 });
 
@@ -48,6 +58,10 @@ const dogsSlice = createSlice({
 
     deleteDog(state, action) {
       state.dogs = state.dogs.filter((dog) => dog.id !== action.payload);
+    },
+
+    addDog(state, action) {
+      state.dogs.push(action.payload);
     },
   },
   extraReducers: (builder) => {
@@ -67,5 +81,5 @@ const dogsSlice = createSlice({
   },
 });
 
-export const { toggleLike, deleteDog } = dogsSlice.actions;
+export const { toggleLike, deleteDog, addDog } = dogsSlice.actions;
 export default dogsSlice.reducer;

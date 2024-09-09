@@ -3,6 +3,7 @@ type ButtonPropsType = {
   onClick: (e: React.MouseEvent<HTMLButtonElement>) => void;
   className?: string;
   isLike?: boolean;
+  type?: string;
 };
 
 export const Button = ({
@@ -10,10 +11,11 @@ export const Button = ({
   onClick,
   className,
   isLike,
+  type,
 }: ButtonPropsType) => {
   const buttonClassName = `${className} ${isLike ? "liked" : className}`.trim();
   return (
-    <button className={buttonClassName} onClick={onClick}>
+    <button className={buttonClassName} onClick={onClick} type="submit">
       {title}
     </button>
   );

@@ -27,16 +27,6 @@ export const CreateProduct = () => {
     weight: "",
   });
 
-  const validateForm = () => {
-    const newErrors: any = {};
-    if (!formState.name) newErrors.name = "Breed Name is required";
-    if (!formState.description)
-      newErrors.description = "Description is required";
-    // добавьте дополнительные проверки для других полей, если нужно
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
   const onSubmitHandler = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(addDog({ ...formState, id: Date.now(), liked: false }));
@@ -47,6 +37,7 @@ export const CreateProduct = () => {
   ) => {
     const { name, value } = e.target;
     setFormState((prevState) => ({ ...prevState, [name]: value }));
+    setErrors((prevErrors) => ({ ...prevErrors, [name]: "" }));
   };
 
   return (
@@ -61,6 +52,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="name"
@@ -69,6 +61,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <textarea
           name="description"
           placeholder="Description"
@@ -76,6 +69,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="origin"
@@ -84,6 +78,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="breedGroup"
@@ -92,6 +87,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="lifeSpan"
@@ -100,6 +96,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="height"
@@ -108,6 +105,7 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
+
         <input
           type="text"
           name="weight"
@@ -116,7 +114,12 @@ export const CreateProduct = () => {
           onChange={onChangeHandler}
           required
         />
-        <button title="Add Dog" type="submit" className="add-batton" />
+        <Button
+          title="Add Dog"
+          type="submit"
+          className="add-button"
+          onClick={() => console.log("Button clicked")}
+        />
       </form>
     </div>
   );

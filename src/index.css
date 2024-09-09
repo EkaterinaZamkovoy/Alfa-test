@@ -105,8 +105,9 @@ h1 {
 .all,
 .favorites,
 .back-button,
-.add-batton {
+.add-button {
   width: 150px;
+  height: 50px;
   border: 1px solid rgb(157, 188, 158);
   color: rgb(157, 188, 158);
   padding: 10px 15px;
